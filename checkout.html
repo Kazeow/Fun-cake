@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+<head>
+  <title>Fun Cake</title>
+  <style>          
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      padding: 20px;
+      color: #fff;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer {
+      background-color: #333;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    /* Container */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Result */
+    #result {
+      margin-top: 20px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Fun Cake</h1>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Beranda</a></li>
+        <li><a href="Produk.html">Produk</a></li>
+         <li><a href="readCostumers.jsp">List Produk</a></li>
+        <li><a href="Profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <form id="checkout-form" onsubmit="submitForm(event)">
+    <label for="name">Nama:</label>
+    <input type="text" id="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br><br>
+
+    <label for="address">Alamat:</label>
+    <textarea id="address" required></textarea><br><br>
+
+    <button type="submit">Pesan Sekarang</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault(); // Mencegah halaman refresh setelah submit
+
+      // Mendapatkan nilai dari input nama, email, dan alamat
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var address = document.getElementById('address').value;
+
+      // Validasi input
+      if (name.trim() === '' || email.trim() === '' || address.trim() === '') {
+        displayResult('error', 'Silakan isi semua field.');
+      } else {
+        // Mengirim data ke server untuk memproses checkout
+        // Misalnya menggunakan AJAX request atau mengirim form secara synchronous
+
+        // Simulasi hasil berhasil atau tidak
+        var isSuccess = Math.random() < 0.5; // Menghasilkan nilai true atau false secara acak
+
+        if (isSuccess) {
+          displayResult('success', 'Checkout berhasil!');
+        } else {
+          displayResult('error', 'Checkout gagal. Silakan coba lagi.');
+        }
+      }
+    }
+
+    function displayResult(type, message) {
+      var resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      var messageElement = document.createElement('p');
+      messageElement.className = type;
+      messageElement.textContent = message;
+
+      resultDiv.appendChild(messageElement);
+    }
+  </script>
+</body>
+</html>
